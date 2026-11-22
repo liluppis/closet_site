@@ -22,5 +22,30 @@
     "email": "Email",
     "send": "Send login link",
     "sent": "Check your email"
+  },
+  "wardrobe": {
+    "add": "Add item",
+    "all": "All",
+    "search": "Search",
+    "empty": "No items here yet"
+  },
+  "form": {
+    "image": "Image",
+    "name": "Name",
+    "brand": "Brand",
+    "store": "Store",
+    "product_url": "Product link",
+    "color": "Color",
+    "season": "Season",
+    "notes": "Notes",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "item": {
+    "delete": "Delete",
+    "confirmDelete": "Delete this item?",
+    "back": "Back",
+    "save": "Save",
+    "saving": "Saving..."
   }
 }

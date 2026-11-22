@@ -1,11 +1,20 @@
 import type { ReactNode } from "react"
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import {
+  BrowserRouter,
+  Navigate,
+  NavLink,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { useTranslation } from "react-i18next"
 import { useSession } from "./hooks/useSession"
 import { supabase } from "./lib/supabase"
 import { Login } from "./pages/Login"
 import { LanguageSwitcher } from "./components/LanguageSwitcher"
+import { Wardrobe } from "./pages/Wardrobe"
+import { ItemPage } from "./pages/ItemPage"
 
 const queryClient = new QueryClient()
 
@@ -20,15 +29,16 @@ function Layout() {
   return (
     <>
       <nav>
-        <span>{t("nav.wardrobe")}</span> <span>{t("nav.outfit")}</span>{" "}
-        <span>{t("nav.collections")}</span> <span>{t("nav.wishlist")}</span>
+        <NavLink to="/">{t("nav.wardrobe")}</NavLink>{" "}
+        <span>{t("nav.outfit")}</span> <span>{t("nav.collections")}</span>{" "}
+        <span>{t("nav.wishlist")}</span>
         <LanguageSwitcher />
         <button onClick={() => supabase.auth.signOut()}>
           {t("nav.logout")}
         </button>
       </nav>
       <main>
-        <h1>{t("nav.wardrobe")}</h1>
+        <Outlet />
       </main>
     </>
   )
@@ -41,13 +51,15 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route
-            path="/"
             element={
               <Protected>
                 <Layout />
               </Protected>
             }
-          />
+          >
+            <Route path="/" element={<Wardrobe />} />
+            <Route path="/items/:id" element={<ItemPage />} />
+          </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
