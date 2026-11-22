@@ -25,6 +25,7 @@
   },
   "wardrobe": {
     "add": "Add item",
+    "all": "All",
     "search": "Search",
     "empty": "No items here yet"
   },

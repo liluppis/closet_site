@@ -8,20 +8,29 @@ import { ItemForm } from "../components/ItemForm"
 export function Wardrobe() {
   const { t } = useTranslation()
   const [params, setParams] = useSearchParams()
-  const category = (params.get("category") ?? "tops") as Category
+
+  const selected = params.get("category")
+  const category: Category | "all" =
+    selected && (CATEGORIES as readonly string[]).includes(selected)
+      ? (selected as Category)
+      : "all"
+
   const [query, setQuery] = useState("")
   const [adding, setAdding] = useState(false)
   const { data: items = [], error } = useItems()
 
   const shown = items.filter(
     (i) =>
-      i.category === category &&
+      (category === "all" || i.category === category) &&
       `${i.name} ${i.brand ?? ""}`.toLowerCase().includes(query.toLowerCase()),
   )
 
   return (
     <>
       <nav>
+        <button aria-pressed={category === "all"} onClick={() => setParams({})}>
+          {t("wardrobe.all")}
+        </button>
         {CATEGORIES.map((c) => (
           <button
             key={c}
@@ -39,7 +48,10 @@ export function Wardrobe() {
       />
       <button onClick={() => setAdding(!adding)}>{t("wardrobe.add")}</button>
       {adding && (
-        <ItemForm defaultCategory={category} onDone={() => setAdding(false)} />
+        <ItemForm
+          defaultCategory={category === "all" ? "tops" : category}
+          onDone={() => setAdding(false)}
+        />
       )}
       {error && <p>{error.message}</p>}
       {shown.length === 0 && <p>{t("wardrobe.empty")}</p>}
