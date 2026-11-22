@@ -22,5 +22,29 @@
     "email": "E-post",
     "send": "Skicka inloggningslänk",
     "sent": "Kolla din e-post"
+  },
+  "wardrobe": {
+    "add": "Lägg till plagg",
+    "search": "Sök",
+    "empty": "Inga plagg här än"
+  },
+  "form": {
+    "image": "Bild",
+    "name": "Namn",
+    "brand": "Märke",
+    "store": "Butik",
+    "product_url": "Produktlänk",
+    "color": "Färg",
+    "season": "Säsong",
+    "notes": "Anteckning",
+    "save": "Spara",
+    "saving": "Sparar..."
+  },
+  "item": {
+    "delete": "Ta bort",
+    "confirmDelete": "Ta bort plagget?",
+    "back": "Tillbaka",
+    "save": "Spara",
+    "saving": "Sparar..."
   }
 }
