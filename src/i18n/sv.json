@@ -39,7 +39,11 @@
     "season": "Säsong",
     "notes": "Anteckning",
     "save": "Spara",
-    "saving": "Sparar..."
+    "saving": "Sparar...",
+    "auto": "Frilägg automatiskt",
+    "own": "Jag laddar upp en färdig PNG",
+    "working": "Frilägger...",
+    "useOriginal": "Använd originalet"
   },
   "item": {
     "delete": "Ta bort",

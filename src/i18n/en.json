@@ -39,7 +39,11 @@
     "season": "Season",
     "notes": "Notes",
     "save": "Save",
-    "saving": "Saving..."
+    "saving": "Saving...",
+    "auto": "Remove background automatically",
+    "own": "I'm uploading a finished PNG",
+    "working": "Removing background...",
+    "useOriginal": "Use the original"
   },
   "item": {
     "delete": "Delete",
