@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "wardrobe": "Garderob",
+    "outfit": "Skapa outfit",
+    "collections": "Kollektioner",
+    "wishlist": "Önskelista",
+    "logout": "Logga ut"
+  },
+  "categories": {
+    "jackets": "Jackor",
+    "outerwear": "Ytterkläder",
+    "shoes": "Skor",
+    "bottoms": "Underdelar",
+    "tops": "Tröjor",
+    "layers": "Yttertröjor",
+    "dresses": "Klänningar",
+    "bags": "Väskor",
+    "jewelry": "Smycken"
+  },
+  "login": {
+    "title": "Logga in",
+    "email": "E-post",
+    "send": "Skicka inloggningslänk",
+    "sent": "Kolla din e-post"
+  }
+}

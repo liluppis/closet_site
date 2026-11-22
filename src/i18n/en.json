@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "wardrobe": "Wardrobe",
+    "outfit": "Create outfit",
+    "collections": "Collections",
+    "wishlist": "Wishlist",
+    "logout": "Log out"
+  },
+  "categories": {
+    "jackets": "Jackets",
+    "outerwear": "Outerwear",
+    "shoes": "Shoes",
+    "bottoms": "Bottoms",
+    "tops": "Tops",
+    "layers": "Layers",
+    "dresses": "Dresses",
+    "bags": "Bags",
+    "jewelry": "Jewelry"
+  },
+  "login": {
+    "title": "Log in",
+    "email": "Email",
+    "send": "Send login link",
+    "sent": "Check your email"
+  }
+}
