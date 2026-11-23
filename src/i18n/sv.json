@@ -50,6 +50,8 @@
     "confirmDelete": "Ta bort plagget?",
     "back": "Tillbaka",
     "save": "Spara",
-    "saving": "Sparar..."
+    "saving": "Sparar...",
+    "recut": "Frilägg igen",
+    "recutting": "Frilägger..."
   }
 }
