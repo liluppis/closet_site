@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next"
 import { useItems, type Item } from "../hooks/useItems"
 import { supabase } from "../lib/supabase"
 import { CATEGORIES, type Category } from "../lib/categories"
+import { cutOut } from "../lib/cutout"
 
 const FIELDS = [
   "name",
@@ -75,6 +76,38 @@ function ItemEditor({ item }: { item: Item }) {
     },
   })
 
+  const recut = useMutation({
+    mutationFn: async () => {
+      if (!item.original_path) return
+      const { data: blob, error } = await supabase.storage
+        .from("originals")
+        .download(item.original_path)
+      if (error || !blob)
+        throw error ?? new Error("Could not fetch the original")
+
+      const cut = await cutOut(
+        new File([blob], "original", { type: blob.type }),
+      )
+
+      const uid = item.original_path.split("/")[0]
+      const path = `${uid}/${item.id}-${Date.now()}.png`
+      const up = await supabase.storage
+        .from("cutouts")
+        .upload(path, cut, { contentType: "image/png" })
+      if (up.error) throw up.error
+
+      const { error: e2 } = await supabase
+        .from("items")
+        .update({ cutout_path: path })
+        .eq("id", item.id)
+      if (e2) throw e2
+
+      if (item.cutout_path)
+        await supabase.storage.from("cutouts").remove([item.cutout_path])
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["items"] }),
+  })
+
   return (
     <>
       <Link to={`/?category=${item.category}`}>{t("item.back")}</Link>
@@ -85,6 +118,9 @@ function ItemEditor({ item }: { item: Item }) {
           style={{ maxWidth: 320, width: "100%" }}
         />
       </div>
+      <button onClick={() => recut.mutate()} disabled={recut.isPending}>
+        {recut.isPending ? t("item.recutting") : t("item.recut")}
+      </button>
       <form
         onSubmit={(e) => {
           e.preventDefault()
@@ -121,8 +157,8 @@ function ItemEditor({ item }: { item: Item }) {
       >
         {t("item.delete")}
       </button>
-      {(save.error || remove.error) && (
-        <p>{(save.error ?? remove.error)!.message}</p>
+      {(save.error || remove.error || recut.error) && (
+        <p>{(save.error ?? remove.error ?? recut.error)!.message}</p>
       )}
     </>
   )
