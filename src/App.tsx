@@ -15,6 +15,7 @@ import { Login } from "./pages/Login"
 import { LanguageSwitcher } from "./components/LanguageSwitcher"
 import { Wardrobe } from "./pages/Wardrobe"
 import { ItemPage } from "./pages/ItemPage"
+import OutfitEditor from "./pages/OutfitEditor"
 
 const queryClient = new QueryClient()
 
@@ -29,9 +30,11 @@ function Layout() {
   return (
     <>
       <nav>
-        <NavLink to="/">{t("nav.wardrobe")}</NavLink>{" "}
-        <span>{t("nav.outfit")}</span> <span>{t("nav.collections")}</span>{" "}
-        <span>{t("nav.wishlist")}</span>
+        <NavLink to="/" end>
+          {t("nav.wardrobe")}
+        </NavLink>{" "}
+        <NavLink to="/outfits/new">{t("nav.outfit")}</NavLink>{" "}
+        <span>{t("nav.collections")}</span> <span>{t("nav.wishlist")}</span>
         <LanguageSwitcher />
         <button onClick={() => supabase.auth.signOut()}>
           {t("nav.logout")}
@@ -59,6 +62,7 @@ function App() {
           >
             <Route path="/" element={<Wardrobe />} />
             <Route path="/items/:id" element={<ItemPage />} />
+            <Route path="/outfits/new" element={<OutfitEditor />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
