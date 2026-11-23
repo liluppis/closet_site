@@ -50,6 +50,8 @@
     "confirmDelete": "Delete this item?",
     "back": "Back",
     "save": "Save",
-    "saving": "Saving..."
+    "saving": "Saving...",
+    "recut": "Remove background again",
+    "recutting": "Removing background..."
   }
 }
